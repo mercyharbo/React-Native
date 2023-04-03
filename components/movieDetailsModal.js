@@ -14,8 +14,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { getMovieDetails, getTvDetails } from './getMoviesApi'
 
-const TMDB_API_KEY = '4b2b112dbfcd761b7b1ca272fb52cbee'
 const BASE_URL = 'https://api.themoviedb.org/3'
+const TMDB_API_KEY = process.env.TMDB_API_KEY
 
 const MovieDetailsModal = ({ movie, isVisible, onClose, mediaType }) => {
   const [movieDetails, setMovieDetails] = useState(null)

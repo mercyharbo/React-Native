@@ -10,7 +10,8 @@ import {
 } from 'react-native'
 import MovieDetailsModal from '../components/movieDetailsModal'
 
-const API_KEY = '4b2b112dbfcd761b7b1ca272fb52cbee'
+const TMDB_API_KEY = process.env.TMDB_API_KEY
+// const API_KEY = '4b2b112dbfcd761b7b1ca272fb52cbee'
 const BASE_URL = 'https://api.themoviedb.org/3'
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'
 
@@ -25,7 +26,7 @@ const TrendingMovies = () => {
 
   const fetchMediaList = useCallback(() => {
     setIsLoading(true)
-    fetch(`${BASE_URL}/${mediaType}/popular?api_key=${API_KEY}&page=${page}`)
+    fetch(`${BASE_URL}/${mediaType}/popular?api_key=${TMDB_API_KEY}&page=${page}`)
       .then((response) => response.json())
       .then((data) => {
         setMediaList((prevMediaList) => [...prevMediaList, ...data.results])

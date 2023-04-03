@@ -12,7 +12,7 @@ import MovieDetailsModal from '../components/movieDetailsModal'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
-const TMDB_API_KEY = '4b2b112dbfcd761b7b1ca272fb52cbee'
+const TMDB_API_KEY = process.env.TMDB_API_KEY
 
 const MovieSearch = () => {
   const [searchText, setSearchText] = useState('')

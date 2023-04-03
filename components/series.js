@@ -3,9 +3,9 @@ import { FlatList, Image } from 'react-native'
 import { View, Text, TouchableOpacity } from 'react-native'
 import MovieDetailsModal from './movieDetailsModal'
 
-const API_KEY = '4b2b112dbfcd761b7b1ca272fb52cbee'
+const TMDB_API_KEY = process.env.TMDB_API_KEY
 const BASE_URL = 'https://api.themoviedb.org/3'
-const TV_SHOWS_URL = `${BASE_URL}/tv/popular?api_key=${API_KEY}&region=US`
+const TV_SHOWS_URL = `${BASE_URL}/tv/popular?api_key=${TMDB_API_KEY}&region=US`
 
 const Tv_series = () => {
   const [tvShows, setTvShows] = useState([])

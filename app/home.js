@@ -5,7 +5,7 @@ import { getMovieDetails, getTvDetails } from '../components/getMoviesApi'
 import MovieDetailsModal from '../components/movieDetailsModal'
 import Tv_series from '../components/series'
 
-const TMDB_API_KEY = '4b2b112dbfcd761b7b1ca272fb52cbee'
+const TMDB_API_KEY = process.env.TMDB_API_KEY
 const BASE_URL = 'https://api.themoviedb.org/3'
 
 export default function Home() {

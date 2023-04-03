@@ -4,14 +4,14 @@ import axios from 'axios'
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { tmdbApiKey } from '../config'
+const TMDB_API_KEY = process.env.TMDB_API_KEY
 
 const LoginScreen = ({ navigation, setIsLoggedIn }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
-  
+
   const [sessionId, setSessionId] = useState(null)
   const [accountId, setAccountId] = useState(null)
 
@@ -37,7 +37,7 @@ const LoginScreen = ({ navigation, setIsLoggedIn }) => {
     try {
       // Step 1: Create a new request token
       const tokenResponse = await axios.get(
-        `https://api.themoviedb.org/3/authentication/token/new?api_key=${tmdbApiKey}`
+        `https://api.themoviedb.org/3/authentication/token/new?api_key=${TMDB_API_KEY}`
       )
       const tokenData = tokenResponse.data
 
@@ -51,7 +51,7 @@ const LoginScreen = ({ navigation, setIsLoggedIn }) => {
       const authData = await new Promise((resolve, reject) => {
         const checkAuth = async () => {
           const authResponse = await axios.post(
-            `https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=${tmdbApiKey}`,
+            `https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=${TMDB_API_KEY}`,
             {
               username: username,
               password: password,
@@ -69,7 +69,7 @@ const LoginScreen = ({ navigation, setIsLoggedIn }) => {
 
         const intervalId = setInterval(async () => {
           const sessionResponse = await axios.get(
-            `https://api.themoviedb.org/3/authentication/token/new?api_key=${tmdbApiKey}&request_token=${tokenData.request_token}`
+            `https://api.themoviedb.org/3/authentication/token/new?api_key=${TMDB_API_KEY}&request_token=${tokenData.request_token}`
           )
           const sessionData = sessionResponse.data
           setSessionId(sessionData)
@@ -82,7 +82,7 @@ const LoginScreen = ({ navigation, setIsLoggedIn }) => {
 
       // Step 4: Create a new session ID using the authorized request token
       const sessionResponse = await axios.post(
-        `https://api.themoviedb.org/3/authentication/session/new?api_key=${tmdbApiKey}`,
+        `https://api.themoviedb.org/3/authentication/session/new?api_key=${TMDB_API_KEY}`,
         {
           request_token: authData.request_token,
         }
