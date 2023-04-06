@@ -16,13 +16,13 @@ const ProfileScreen = () => {
   const [user, setUser] = useState(null)
   const [photos, setPhotos] = useState([])
 
-  // useEffect(() => {
-  //   fetch('https://randomuser.me/api/')
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setUser(data.results[0])
-  //     })
-  // }, [])
+  useEffect(() => {
+    fetch('https://randomuser.me/api/')
+      .then((response) => response.json())
+      .then((data) => {
+        setUser(data.results[0])
+      })
+  }, [])
 
   if (!user) {
     return <Text>Loading...</Text>
